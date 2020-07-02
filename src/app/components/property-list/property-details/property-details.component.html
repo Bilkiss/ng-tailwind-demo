@@ -1,0 +1,262 @@
+<div class="container py-6">
+
+  <nav class="bg-gray-100 p-2 rounded font-sans w-full my-4">
+    <ol class="list-reset flex text-grey-dark mb-0">
+      <li><a [routerLink]="['/']" class="text-blue font-bold">Home</a></li>
+      <li><span class="mx-2">/</span></li>
+      <li><a [routerLink]="['/property-list']" class="text-blue font-bold">Property List</a></li>
+      <li><span class="mx-2">/</span></li>
+      <li>Property Details</li>
+    </ol>
+  </nav>
+
+  <h3 class="mb-3">Property details</h3>
+  <div class="md:flex hover:shadow pl-6 pr-6 pb-6 border rounded">
+    <div class="md:flex-shrink-0">
+      <div *ngIf="propertySlug" class="pt-6">
+        <img class="rounded-lg md:w-56" [src]="propertyDetails.image_property ? propertyDetails.image_property : defaultPropImg"
+             alt="{{propertyDetails.name}}">
+      </div>
+    </div>
+
+    <form [formGroup]="propertyDetailsForm">
+      <div class="mt-4 md:mt-0 md:ml-6 w-full md:ml-20">
+        <div class="uppercase tracking-wide text-xl text-gray-700 font-bold">
+        <span *ngIf="propertySlug">
+          {{propertyDetails.name}}
+        </span>
+          <span *ngIf="!propertySlug">
+          <div class="md:flex md:items-center mb-6">
+            <div class="md:w-1/6">
+              <label class="capitalize block text-gray-500 md:text-right mb-1 md:mb-0 pr-4 text-sm"
+                     for="inline-full-name">
+                Property<sup class="text-sm text-red-400">*</sup>
+              </label>
+            </div>
+            <div class="md:w-3/4">
+              <input [(ngModel)]="propertyDetails.name" formControlName="name"
+                  class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                  id="inline-full-name" type="text">
+            </div>
+          </div>
+       </span>
+
+        </div>
+
+        <div class="lg:flex lg:items-center">
+          <div class="lg:w-1/2">
+            <div class="block mt-1 text-lg leading-tight text-gray-900">
+
+              <div class="md:flex md:items-center">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mt-2 mr-3">
+                    Ref: <span *ngIf="!propertySlug"><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+            <span *ngIf="propertySlug">
+             {{propertyDetails.ref}}
+            </span>
+                  <div *ngIf="!propertySlug" class="mb-2">
+                    <input [(ngModel)]="propertyDetails.ref" formControlName="ref" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="block mt-1 text-lg leading-tight font-semibold text-gray-900">
+
+              <div class="md:flex md:items-center">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mr-3">
+                    Price: <span *ngIf="!propertySlug"><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+            <span *ngIf="propertySlug">
+             {{propertyDetails.currency}} {{propertyDetails.price}}
+            </span>
+                  <div *ngIf="!propertySlug" class="mb-2">
+                    <input [(ngModel)]="propertyDetails.price" formControlName="price" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="block mt-1 leading-tight text-gray-700">
+
+              <div class="md:flex md:items-center">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mt-2 mr-3">
+                    Start date: <span *ngIf="!propertySlug"><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+            <span *ngIf="propertySlug">
+              {{propertyDetails.date_online}}
+            </span>
+                  <div *ngIf="!propertySlug"  class="mb-2">
+                    <input [(ngModel)]="propertyDetails.date_online" formControlName="date_online" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="block mt-1 leading-tight text-gray-700">
+              <div class="md:flex md:items-center">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mt-2 mr-3">
+                    Contact phone: <span *ngIf="!propertySlug"><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+            <span *ngIf="propertySlug">
+              {{propertyDetails.contact_phone}}
+            </span>
+                  <div *ngIf="!propertySlug"  class="mb-2">
+                    <input [(ngModel)]="propertyDetails.contact_phone" formControlName="contact_phone" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="lg:w-1/2">
+
+            <div class="block mt-12 leading-tight text-gray-700">
+              <div class="md:flex md:items-center">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mt-2 mr-3">
+                    Currency: <span *ngIf="!propertySlug"><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+            <span *ngIf="propertySlug">
+              {{propertyDetails.currency}}
+            </span>
+                  <div *ngIf="!propertySlug"  class="mb-2">
+                    <input [(ngModel)]="propertyDetails.currency" formControlName="currency" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="block mt-1 leading-tight text-gray-700">
+              <div class="md:flex md:items-center">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mt-2 mr-3">
+                    End date: <span *ngIf="!propertySlug"><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+            <span *ngIf="propertySlug">
+              {{propertyDetails.date_offline}}
+            </span>
+                  <div *ngIf="!propertySlug"  class="mb-2">
+                    <input [(ngModel)]="propertyDetails.date_offline" formControlName="date_offline" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="block mt-1 leading-tight text-gray-700">
+              <div class="md:flex md:items-center">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mt-2 mr-3">
+                    Contact email: <span *ngIf="!propertySlug"><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+            <span *ngIf="propertySlug">
+              {{propertyDetails.contact_email}}
+            </span>
+                  <div *ngIf="!propertySlug"  class="mb-2">
+                    <input [(ngModel)]="propertyDetails.contact_email" formControlName="contact_email" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="block mt-1 leading-tight text-gray-700 mt-10 mb-6" *ngIf="!propertySlug" >
+          <div class="md:flex md:items-center">
+            <div class="md:w-1/6">
+              <label class="text-sm md:text-right block mt-2 mr-3">
+                Image: <sup class="text-sm text-red-400">*</sup>
+              </label>
+            </div>
+            <div class="md:w-3/6">
+              <div class="mb-2">
+                <input type="file" name="image" class="form-control-file" id="image" (change)="onFileChanged($event)">
+              </div>
+            </div>
+            <div class="w-2/6" *ngIf="propertyDetails.image_property">
+              <img [src]="propertyDetails.image_property" alt="{{propertyDetails.image_property}}">
+            </div>
+          </div>
+        </div>
+
+
+
+        <p class="mt-2 text-gray-600"  *ngIf="propertySlug">
+          {{propertyDetails.description}}
+        </p>
+
+        <div class="block mt-1 leading-tight text-gray-700" *ngIf="!propertySlug" >
+          <div class="md:flex md:items-center">
+            <div class="md:w-1/6">
+              <label class="text-sm block mt-2 mr-3">
+                Description: <span *ngIf="!propertySlug"><sup class="text-sm text-red-400">*</sup></span>
+              </label>
+            </div>
+            <div class="md:w-3/4">
+              <div  class="mb-2">
+                <textarea [(ngModel)]="propertyDetails.description" formControlName="description" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300" name="" id="" cols="30" rows="10"></textarea>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+          <div class="m-8 text-center" *ngIf="!propertySlug">
+
+
+            <p *ngIf="errorProp" class="text-red-500 text-xs italic">{{errorProMsg}}</p>
+          </div>
+
+          <div class="md:flex md:items-center" *ngIf="!propertySlug">
+
+          <div class="md:w-1/3"></div>
+          <div class="md:w-2/3">
+            <button (click)="addProperty()" class="shadow bg-blue-500 hover:bg-blue-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+              Add a new property
+            </button>
+            <button (click)="clearPro()" class="ml-3 shadow-sm bg-white hover:bg-blue-600 focus:shadow-outline focus:outline-none text-blue-500 font-bold py-2 px-4 rounded" type="button">
+              Cancel
+            </button>
+          </div>
+        </div>
+
+          <div class="text-right mt-10" *ngIf="propertySlug" (click)="goToPropList()">
+            <button class="shadow-sm bg-blue-500 hover:bg-blue-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+              <i class="fa fa-angle-double-left"></i> Back to list
+            </button>
+          </div>
+
+      </div>
+    </form>
+
+  </div>
+
+</div>
+

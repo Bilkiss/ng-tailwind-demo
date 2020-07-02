@@ -1,0 +1,69 @@
+<nav class="navigation border-bottom bg-white position-relative z-10">
+  <div class="flex items-center flex-shrink-0 mr-6 mt-2 sm:mt-2 md:mt-0 pt-2 ">
+    <p class="font-semibold text-xl tracking-tight">Angular tailwind demo</p>
+  </div>
+  <div class="block lg:hidden">
+    <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:border-white" (click)="toggleNav()">
+      <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+    </button>
+  </div>
+  <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+
+    </div>
+    <div class="hidden lg:block" [ngClass]="{'block': isNavOpen, 'hidden' : !isNavOpen}">
+      <div class="text-sm lg:flex-grow">
+
+
+
+        <a [routerLink]="['/']" class="block cursor-pointer mt-4 lg:inline-block lg:mt-0 text-gray-600 hover:text-gray-900 mr-4">
+          Home
+        </a>
+        <a class="position-relative cursor-pointer inline-block text-sm px-4 py-2 leading-none border rounded text-gray-600 border-gray-200 hover:border-transparent hover:text-teal hover:bg-gray-300 mt-4 lg:mt-0">
+         <span (click)="toggleCatMenu()" >
+           Categories
+          <i class="ml-3 fa fa-angle-double-down"></i>
+         </span>
+
+          <ul *ngIf="toggleCatDropdown" class="bg-white absolute top-auto mt-2 mr-2 object-center rounded shadow right-0 w-32">
+            <li>
+              <a [routerLink]="['/car-list']" (click)="toggleCatMenu()"  class="block hover:bg-gray-200 text-gray-600  px-6 py-2 cursor-pointer">Car</a>
+            </li>
+            <li>
+              <a [routerLink]="['/property-list']" (click)="toggleCatMenu()" class="text-gray-600 block hover:bg-gray-200 px-6 py-2 cursor-pointer">Property</a>
+            </li>
+          </ul>
+        </a>
+        <a *ngIf="isUserLogin"  class="position-relative ml-2 lg:ml-0 cursor-pointer inline-block text-sm px-4 py-2 leading-none border rounded text-gray-600 border-gray-200 hover:border-transparent hover:text-teal hover:bg-gray-300 mt-4 lg:mt-0 lg:ml-2">
+          <span (click)="toggleAddOffer()">
+            Add Offer
+          <i class="ml-3 fa fa-angle-double-down"></i>
+          </span>
+
+          <ul *ngIf="toggleNavDropdown" class="bg-white absolute top-auto mt-2 mr-2 object-center rounded shadow right-0 w-32">
+            <li>
+              <a [routerLink]="['/add-car']" (click)="toggleAddOffer()" class="block hover:bg-gray-200 text-gray-600  px-6 py-2 cursor-pointer">Car</a>
+            </li>
+            <li>
+              <a [routerLink]="['/add-property']" (click)="toggleAddOffer()" class="text-gray-600 block hover:bg-gray-200 px-6 py-2 cursor-pointer">Property</a>
+            </li>
+          </ul>
+        </a>
+        <a *ngIf="!isUserLogin" [routerLink]="['/login']" class="lg:ml-4 inline-block text-sm px-4 py-2 leading-none border rounded hover:border-transparent text-gray-600 hover:text-white hover:bg-gray-600 mt-4 lg:mt-0">
+          Login / Register
+        </a>
+        <a *ngIf="isUserLogin" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white">
+           <span class="lg:ml-4 sm:mb-0 md:mb-0 lg-mb-0 lg:mt-0 inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+            <span class="flex">
+              <span class="w-1/6">
+                <img class="h-5 w-5 rounded-full" src="../../../../assets/images/avatar.png" alt="{{user.first_name}}">
+                </span>
+              <span class="w-4/6 h-5">
+                <p class="w-32 ml-2 mr-1">Welcome {{user.first_name}}</p>
+              </span>
+            </span>
+
+          </span>
+        </a>
+    </div>
+  </div>
+</nav>

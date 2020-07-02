@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+
+//@import "~bootstrap/scss/bootstrap";
+
+.bg-header{
+  background-image: url("./assets/images/bg-header.jpg");
+  height: 60vh;
+  &.car-header{
+    background-image: url("./assets/images/bg-header-car.jpg");
+  }
+}
+
+//Loading
+.backdrop{
+  position: fixed !important;
+}

@@ -1,0 +1,390 @@
+<div class="container py-6">
+
+  <nav class="bg-gray-100 p-2 rounded font-sans w-full my-4">
+    <ol class="list-reset flex text-grey-dark mb-0">
+      <li><a [routerLink]="['/']" class="text-blue font-bold">Home</a></li>
+      <li><span class="mx-2">/</span></li>
+      <li><a [routerLink]="['/car-list']" class="text-blue font-bold">Car List</a></li>
+      <li><span class="mx-2">/</span></li>
+      <li>Car Details</li>
+    </ol>
+  </nav>
+
+  <h3>Car details</h3>
+  <div class="md:flex hover:shadow p-6 border rounded mt-4">
+    <div class="md:flex-shrink-0">
+      <div *ngIf="carSlug">
+        <img class="rounded-lg md:w-56" [src]="carDetails.image_car ? carDetails.image_car : defaultCarImg"
+             alt="{{carDetails.name}}">
+      </div>
+
+    </div>
+    <form [formGroup]="carDetailsForm">
+      <div class="mt-4 md:mt-0 md:ml-6 w-full md:ml-20">
+        <div class="uppercase tracking-wide text-xl text-gray-700 font-bold">
+          <span *ngIf="carSlug">
+            {{carDetails.name}}
+          </span>
+          <span *ngIf="!carSlug">
+            <div class="md:flex md:items-center mb-6">
+              <div class="md:w-1/6">
+                <label class="capitalize block text-gray-500 md:text-right mb-1 md:mb-0 pr-4 text-sm"
+                       for="inline-full-name">
+                  Car Name<sup class="text-sm text-red-400">*</sup>
+                </label>
+              </div>
+              <div class="md:w-3/4">
+                <input [(ngModel)]="carDetails.name" formControlName="name"
+                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                    id="inline-full-name" type="text">
+              </div>
+            </div>
+         </span>
+
+        </div>
+
+        <div class="lg:flex lg:items-center">
+          <div class="lg:w-1/2">
+            <div class="block mt-1 text-lg leading-tight font-semibold text-gray-900">
+
+              <div class="md:flex md:items-center">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mt-2 mr-3">
+                    Body type: <span *ngIf="!carSlug"><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+              <span *ngIf="carSlug">
+                {{carDetails.body_type}}
+              </span>
+                  <div *ngIf="!carSlug" class="mb-2">
+                    <input [(ngModel)]="carDetails.body_type" formControlName="body_type"
+                           class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="block mt-1 leading-tight text-gray-700">
+
+              <div class="md:flex md:items-center">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mt-2 mr-3">
+                    Engine: <span *ngIf="!carSlug"><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+              <span *ngIf="carSlug">
+                {{carDetails.engine}}
+              </span>
+                  <div *ngIf="!carSlug"  class="mb-2">
+                    <input [(ngModel)]="carDetails.engine" formControlName="engine"
+                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="block mt-1 leading-tight text-gray-700">
+              <div class="md:flex md:items-center">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mt-2 mr-3">
+                    Mileage: <span *ngIf="!carSlug"><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+              <span *ngIf="carSlug">
+                {{carDetails.mileage}}
+              </span>
+                  <div *ngIf="!carSlug"  class="mb-2">
+                    <input [(ngModel)]="carDetails.mileage" formControlName="mileage"
+                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="block mt-1 leading-tight text-gray-700">
+              <div class="md:flex md:items-center">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mt-2 mr-3">
+                    Fuel type: <span *ngIf="!carSlug"><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+              <span *ngIf="carSlug">
+                {{carDetails.fuel_type}}
+              </span>
+                  <div *ngIf="!carSlug"  class="mb-2">
+                    <input [(ngModel)]="carDetails.fuel_type" formControlName="fuel_type"
+                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lg:w-1/2">
+
+            <div class="block mt-1 leading-tight text-gray-700" *ngIf="!carSlug">
+              <div class="md:flex md:items-center">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mt-2 mr-3">
+                    Ref: <span><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+                  <input [(ngModel)]="carDetails.ref" formControlName="ref"
+                      class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                </div>
+              </div>
+            </div>
+
+            <div class="block mt-1 leading-tight text-gray-700">
+              <div class="md:flex md:items-center">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mt-2 mr-3">
+                    Transmission: <span *ngIf="!carSlug"><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+              <span *ngIf="carSlug">
+                {{carDetails.transmission}}
+              </span>
+                  <div *ngIf="!carSlug"  class="mb-2">
+                    <input [(ngModel)]="carDetails.transmission" formControlName="transmission"
+                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="block mt-1 leading-tight text-gray-700">
+              <div class="md:flex md:items-center">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mt-2 mr-3">
+                    Door count: <span *ngIf="!carSlug"><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+              <span *ngIf="carSlug">
+                {{carDetails.door_count}}
+              </span>
+                  <div *ngIf="!carSlug"  class="mb-2">
+                    <input [(ngModel)]="carDetails.door_count" formControlName="door_count"
+                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="block mt-1 leading-tight text-gray-700">
+              <div class="md:flex md:items-center">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mt-2 mr-3">
+                    Price: <span *ngIf="!carSlug"><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+              <span *ngIf="carSlug">
+                {{carDetails.currency}}
+              </span>
+                  <div *ngIf="!carSlug"  class="mb-2">
+                    <input [(ngModel)]="carDetails.price" formControlName="price"
+                           class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div class="block mt-1 leading-tight text-gray-700" *ngIf="!carSlug" >
+          <div class="md:flex md:items-center">
+            <div class="md:w-1/6">
+              <label class="text-sm md:text-right block mt-2 mr-3">
+                Image: <sup class="text-sm text-red-400">*</sup>
+              </label>
+            </div>
+            <div class="md:w-3/6">
+              <div class="mb-2">
+                <input type="file" name="image" class="form-control-file" id="image" (change)="onFileChanged($event)">
+              </div>
+            </div>
+            <div class="w-2/6" *ngIf="carDetails.image_car">
+              <img [src]="carDetails.image_car" alt="">
+            </div>
+          </div>
+        </div>
+
+
+        <h4 class="mt-4 text-gray-600">Other Details</h4>
+        <div class="lg:flex lg:items-center">
+          <div class="lg:w-1/2">
+            <div class="block mt-1 leading-tight text-gray-700"  *ngIf="!carSlug">
+
+              <div class="md:flex md:items-center">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mt-2 mr-3">
+                    Price currency: <span *ngIf="!carSlug"><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+              <span>
+               {{carDetails.currency}}
+              </span>
+                  <div *ngIf="!carSlug" class="mb-2">
+                    <input [(ngModel)]="carDetails.currency" formControlName="currency"
+                           class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="block mt-1 leading-tight text-gray-700">
+
+              <div class="md:flex md:items-center">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mt-2 mr-3">
+                    Start date: <span *ngIf="!carSlug"><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+              <span *ngIf="carSlug">
+                {{carDetails.date_online}}
+              </span>
+                  <div *ngIf="!carSlug"  class="mb-2">
+                    <input [(ngModel)]="carDetails.date_online" formControlName="date_online"
+                           class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="block mt-1 leading-tight text-gray-700">
+              <div class="md:flex md:items-center">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mt-2 mr-3">
+                    Contact phone: <span *ngIf="!carSlug"><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+              <span *ngIf="carSlug">
+                {{carDetails.contact_phone}}
+              </span>
+                  <div *ngIf="!carSlug"  class="mb-2">
+                    <input [(ngModel)]="carDetails.contact_phone" formControlName="contact_phone"
+                           class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="lg:w-1/2">
+
+            <div class="block mt-1 leading-tight text-gray-700">
+              <div class="md:flex md:items-center md:mt-8">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mt-2 mr-3">
+                    End date: <span *ngIf="!carSlug"><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+              <span *ngIf="carSlug">
+                {{carDetails.date_offline}}
+              </span>
+                  <div *ngIf="!carSlug"  class="mb-2">
+                    <input [(ngModel)]="carDetails.date_offline" formControlName="date_offline"
+                           class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="block mt-1 leading-tight text-gray-700">
+              <div class="md:flex md:items-center">
+                <div class="md:w-2/6">
+                  <label class="text-sm block mt-2 mr-3">
+                    Contact email: <span *ngIf="!carSlug"><sup class="text-sm text-red-400">*</sup></span>
+                  </label>
+                </div>
+                <div class="md:w-3/6">
+              <span *ngIf="carSlug">
+                {{carDetails.contact_email}}
+              </span>
+                  <div *ngIf="!carSlug"  class="mb-2">
+                    <input [(ngModel)]="carDetails.contact_email" formControlName="contact_email"
+                           class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300"
+                           type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <p class="mt-2 text-gray-600" *ngIf="carSlug">
+          {{carDetails.description}}
+        </p>
+
+        <div class="block mt-1 leading-tight text-gray-700" *ngIf="!carSlug" >
+          <div class="md:flex md:items-center">
+            <div class="md:w-1/6">
+              <label class="text-sm block mt-2 mr-3">
+                Description: <span *ngIf="!carSlug"><sup class="text-sm text-red-400">*</sup></span>
+              </label>
+            </div>
+            <div class="md:w-3/4">
+              <div  class="mb-2">
+                <textarea [(ngModel)]="carDetails.description" formControlName="description"
+                          class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-300" name="" id="" cols="30" rows="10"></textarea>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="md:flex md:items-center m-8" *ngIf="!carSlug">
+          <div class="md:w-1/3"></div>
+          <div class="md:w-2/3">
+            <p *ngIf="carDetailsError" class="text-red-500 text-xs italic">{{carDetailsErrorMsg}}</p>
+            <button (click)="addCarDetails()" class="shadow bg-blue-500 hover:bg-blue-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+              Add a new car
+            </button>
+            <button (click)="clearCarDetails()" class="ml-3 shadow-sm bg-white hover:bg-blue-600 focus:shadow-outline focus:outline-none text-blue-500 font-bold py-2 px-4 rounded" type="button">
+                  Cancel
+             </button>
+          </div>
+        </div>
+
+        <div class="text-right mt-10" *ngIf="carSlug" (click)="goToCarList()">
+          <button class="shadow-sm bg-blue-500 hover:bg-blue-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+            <i class="fa fa-angle-double-left"></i> Back to list
+          </button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+</div>
+

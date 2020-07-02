@@ -1,0 +1,51 @@
+@tailwind base;
+
+/*@tailwind preflight;*/
+
+@tailwind components;
+
+    .navigation {
+        @apply flex items-center justify-between flex-wrap border-blue-100 pt-2 pb-2 pl-6 pr-6
+    }
+
+    .search{
+        @apply bg-gray-200 p-4
+    }
+    .card {
+        @apply max-w-sm rounded overflow-hidden shadow mt-4
+    }
+
+    .card:hover {
+        @apply shadow-lg
+    }
+
+
+@tailwind utilities;
+
+@variants hover, focus {
+    .rotate-0 {
+        transform: rotate(0deg);
+    }
+    .rotate-90 {
+        transform: rotate(90deg);
+    }
+    .rotate-180 {
+        transform: rotate(180deg);
+    }
+    .rotate-270 {
+        transform: rotate(270deg);
+    }
+    .rotate-y-0 {
+        transform: rotateY(0deg);
+    }
+    .rotate-y-90 {
+        transform: rotateY(90deg);
+    }
+    .rotate-y-180 {
+        transform: rotateY(180deg);
+    }
+    .rotate-y-270 {
+        transform: rotateY(270deg);
+    }
+}
+
